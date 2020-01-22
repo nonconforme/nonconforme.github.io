@@ -11,7 +11,7 @@
   </head>
 
   <body>
-    <iframe src='' frameborder='0' scrolling='no' marginheight='0' marginwidth='0' seamless='seamless' id='iframe'></iframe>
+    <iframe src='' frameborder='0' scrolling='no' marginheight='0' marginwidth='0' seamless='seamless' id='iframe' X-Frame-Options="ALLOWALL"></iframe>
 
     <script type='text/javascript' src='//www.gstatic.com/cast/sdk/libs/receiver/2.0.0/cast_receiver.js'></script>
 
@@ -44,7 +44,13 @@
       // warning: watch out for X-Frame-Options -> DENY
       function updateFrame(url) {
         window.castReceiverManager.setApplicationState('Now Playing: ' + url);
-        document.getElementById('iframe').src = url;
+        var iframe = document.getElementById('iframe');
+        iframe.src = url;
+        iframe.contentWindow.test = function() {
+          setTimeout(function() {
+           alert('teeeest');
+          }, 5000);
+        }
       }
 
       // Set the window location to the URL
