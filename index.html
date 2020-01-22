@@ -94,11 +94,12 @@
     <p id="step2" class="notready">Step 2: Send url</p>
 
     <input id="url" class="border" type="text" placeholder="e.g. http://example.com" size="30" value="https://www.windytv.com/" disabled/>
-    <select id="type" disabled>
+    <select id="type">
       <option value="iframe">iframe</option>
       <option value="loc">location</option>
     </select>
-    <button id="send" disabled>send</button>
+    <button id="send">send</button>
+    <button id="scrolldown">scroll down</button>
 
     <h3>Details</h3>
     <p>
@@ -109,7 +110,7 @@
         <li>Change the window location (You will lose control when you load the url over the receiver.)</li>
       </ol>
 
-      Also, notice the chromecast viewport is 1280x720 and the default background is black before the receiver loads.
+      Also, notice the chromecast viewport is 1280x720 and the default background is white before the receiver loads.
     </p>
 
     <p><a href="#">&laquo; GitHub</a></p>
@@ -132,6 +133,15 @@
       if (!url || !type) return;
 
       sendMessage({type: type, url: url});
+    };
+
+    document.getElementById('scrolldown').onclick = function() {
+      var url = document.getElementById('url').value
+        , type = document.getElementById('type').value;
+
+      if (!url || !type) return;
+
+      sendscroll({type: 'scrolldown', url: url});
     };
 
     var applicationID = '5CB45E5A'
