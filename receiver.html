@@ -47,11 +47,13 @@
         window.castReceiverManager.setApplicationState('Now Playing: ' + url);
         var iframe = document.getElementById('iframe');
         iframe.src = url;
-        iframe.contentWindow.foo = function() {
+        var xcoord = 0;
+        var ycoord = 0;
           setInterval(function() {
-           scrollDown();
+           ycoord = ycoord + 50;
+           iframe.contentWindow.scrollTo(xcoord,ycoord)
           }, 5000);
-        }
+        
       }
 
       // Set the window location to the URL
@@ -61,7 +63,7 @@
         window.location.href = url;
       }
 
-      scrollDown() {
+      function scrollDown() {
         window.scrollBy(0, 100);
       }
 
