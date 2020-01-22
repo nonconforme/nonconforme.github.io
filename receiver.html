@@ -17,10 +17,6 @@
 
     <script type='text/javascript'>
       window.onload = function() {
-        setTimeout(function() {
-           alert('teeeest loaded');
-        }, 5000);
-
         window.castReceiverManager = cast.receiver.CastReceiverManager.getInstance();
 
         castReceiverManager.onReady = function(event) {
@@ -38,6 +34,7 @@
 
           if (msg.type === 'iframe') updateFrame(msg.url);
           if (msg.type === 'loc') updateLocation(msg.url);
+          if (msg.type === 'scrolldown') scrollDown();
         };
 
         // initialize CastReceiverManager
@@ -50,9 +47,9 @@
         window.castReceiverManager.setApplicationState('Now Playing: ' + url);
         var iframe = document.getElementById('iframe');
         iframe.src = url;
-        iframe.contentWindow.test = function() {
-          setTimeout(function() {
-           alert('teeeest');
+        iframe.contentWindow.foo = function() {
+          setInterval(function() {
+           scrollDown();
           }, 5000);
         }
       }
@@ -63,6 +60,11 @@
         window.castReceiverManager.setApplicationState('Now Playing: ' + url);
         window.location.href = url;
       }
+
+      scrollDown() {
+        window.scrollBy(0, 100);
+      }
+
     </script>
   </body>
 </html>
